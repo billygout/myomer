@@ -1,0 +1,17 @@
+application: myomer-net
+version: 0-1-0
+runtime: go
+api_version: go1
+
+handlers:
+- url: /upload
+  script: _go_app
+  login: admin
+- url: /postupload
+  script: _go_app
+  login: admin
+- url: /.*
+  script: _go_app
+
+inbound_services:
+- mail
