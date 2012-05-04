@@ -73,14 +73,9 @@ func parseBody(body io.Reader, is_multipart bool) (plain, html string, err error
 			default:
 				if in_plain {
 					// for plain section of a multipart message
-					// omit leading and trailing asterisks (*)
+					// omit all asterisks (*)
 					if is_multipart {
-						for len(str) > 0 && str[0] == '*' {
-							str = str[1:]
-						}
-						for len(str) > 0 && str[len(str)-1] == '*' {
-							str = str[0:len(str)-1]
-						}	
+						str = strings.Replace(str, "*", "", -1)
 					}
 					
 					plain += str + "\n"
